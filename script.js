@@ -36,5 +36,4 @@ const operate = function(a, b, c){
     }
 }
 
-console.log(operate('/', 10, 5))
 
