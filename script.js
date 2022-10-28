@@ -33,7 +33,16 @@ const operate = function(a, b, c){
        return subtraction(b, c)
     } else if(a === '+'){
        return addition(b, c)
-    }
-}
+    
+    }}
+    
+
+let value;
+const keys = document.querySelectorAll('.btns');
+
+keys.forEach(button => button.addEventListener ('click', () => {
+    value = button.getAttribute('data-key')
+    console.log(value)
 
 
+}))
