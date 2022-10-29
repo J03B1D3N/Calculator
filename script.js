@@ -37,12 +37,32 @@ const operate = function(a, b, c){
     }}
     
 
-let value;
+
+let currentNumber = "";
+let previousNumber = "";
+let operator = "";
+
+const currentDisplay = document.querySelector('.current_number');
+const previousDisplay = document.querySelector('.last_number')
+
+const equal = document.querySelector(".equal")
+
+const deciman = document.querySelector(".decimal")
+
+const clear = document.querySelector("#clearbtn")
+
+const deletebtn = document.querySelector("#deletebtn")
+
 const keys = document.querySelectorAll('.btns');
 
-keys.forEach(button => button.addEventListener ('click', () => {
-    value = button.getAttribute('data-key')
-    console.log(value)
+const operators = document.querySelectorAll('.operators')
 
+keys.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        handleNumber(e.target.textContent)
+    })
+})
 
-}))
+function handleNumber(number) {
+    console.log(number)
+}
