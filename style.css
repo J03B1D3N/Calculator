@@ -41,15 +41,16 @@ footer {
     border: 2px solid black;
     border-radius: 15px;;
 }
-.last_number {
+.last_number, .current_number {
     height: 100%;
-    width: 100%;
+    width: 380px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 30px;
+    padding: 5px;
 }
 
-.current_number{
-    height: 100%;
-    width: 100%;
-}
 
 .btns_div {
     height: 500px;

@@ -64,5 +64,8 @@ keys.forEach(btn => {
 })
 
 function handleNumber(number) {
-    console.log(number)
+    if(currentNumber.length<= 11) {
+        currentNumber += number;
+        currentDisplay.textContent = currentNumber;
+    }
 }
