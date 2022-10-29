@@ -1,43 +1,3 @@
-const addition = function() {
-    let args = Array.from(arguments);
-    return args.reduce(function (acc, cur) {
-        return acc + cur;
-    })
-}
-
-const subtraction = function(a, ...b){
-    let args = Array.from(arguments);
-    return args.reduce(function (acc, cur) {
-        return acc - cur;
-    })
-}
-const multiplication = function(a, ...b){
-    let args = Array.from(arguments);
-    return args.reduce(function (acc, cur) {
-        return acc * cur;
-    })
-}
-const division = function(a, ...b){
-    let args = Array.from(arguments);
-    return args.reduce(function (acc, cur) {
-        return acc / cur;
-    })
-}
-
-const operate = function(a, b, c){
-    if (a === '/'){
-       return division(b, c)
-    } else if (a === '*'){
-       return multiplication(b, c)
-    } else if (a === '-'){
-       return subtraction(b, c)
-    } else if(a === '+'){
-       return addition(b, c)
-    
-    }}
-    
-
-
 let currentNumber = "";
 let previousNumber = "";
 let operator = "";
@@ -47,15 +7,26 @@ const previousDisplay = document.querySelector('.last_number')
 
 const equal = document.querySelector(".equal")
 
-const deciman = document.querySelector(".decimal")
+equal.addEventListener('click', () => {
+    if(currentNumber != "" && previousNumber != ""){
+        calculate();
+}})
+
+const decimal = document.querySelector(".decimal")
+
+decimal.addEventListener('click', addDecimal)
 
 const clear = document.querySelector("#clearbtn")
 
+clear.addEventListener('click', clearing)
+
 const deletebtn = document.querySelector("#deletebtn")
+
+deletebtn.addEventListener('click', deleteLastCharacter)
 
 const keys = document.querySelectorAll('.btns');
 
-const operators = document.querySelectorAll('.operators')
+const operators = document.querySelectorAll('.operator')
 
 keys.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -66,6 +37,74 @@ keys.forEach(btn => {
 function handleNumber(number) {
     if(currentNumber.length<= 11) {
         currentNumber += number;
+        currentDisplay.textContent = currentNumber;
+    }
+}
+
+
+operators.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        handleOperator(e.target.textContent)
+    })})
+
+
+function handleOperator(op) {
+    operator = op;
+    if(previousNumber != ""){
+        calculate()
+    }
+    previousNumber = currentNumber;
+    previousDisplay.textContent = previousNumber + " " + operator;
+    currentNumber = "";
+    currentDisplay.textContent = "";
+
+}
+
+function calculate() {
+    previousNumber = Number(previousNumber)
+    currentNumber = Number(currentNumber)
+    if (operator === "+") {
+        currentNumber = previousNumber + currentNumber;
+    } else if(operator === "-") {
+        currentNumber = previousNumber - currentNumber;
+    } else if(operator === "×") {
+        currentNumber = previousNumber * currentNumber;
+    } else if(operator === "÷" && currentNumber <= 0) {
+        previousNumber = "JOE BIDEN DOES"
+        previousDisplay.textContent = previousNumber;
+        currentNumber =  "NOT ALLOW THIS"
+        currentDisplay.textContent = currentNumber;
+        return;
+    } else if(operator === "÷"){
+        currentNumber = previousNumber / currentNumber; 
+    }
+    previousDisplay.textContent = ""
+    previousNumber = ""
+    currentNumber = String(currentNumber)
+    currentDisplay.textContent = currentNumber
+}
+
+function clearing() {
+    previousDisplay.textContent = "";
+    currentDisplay.textContent = "";
+    currentNumber = "";
+    previousNumber = "";
+    operator = "";
+}
+
+function deleteLastCharacter() {
+    if (currentNumber.length === 0) {
+        currentNumber = previousNumber + " " + operator;
+        currentDisplay.textContent = currentNumber + " " + operator;
+        previousDisplay.textContent = "";
+    }
+    currentNumber = currentNumber.slice(0, -1)
+    currentDisplay.textContent = currentNumber;
+} 
+
+function addDecimal() {
+    if(!currentNumber.includes(".")){
+        currentNumber = currentNumber + "."
         currentDisplay.textContent = currentNumber;
     }
 }

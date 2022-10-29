@@ -63,7 +63,7 @@ footer {
  
 }
 
-.btns {
+.btns, .operator, .equal, .clear, .delete, .decimal {
     border-radius: 15px;
     border: 2px solid black;
     font-size: 22px;
@@ -78,10 +78,10 @@ footer {
     grid-column-start: 3;
     grid-column-end: 5;
 }
-.btns:hover {
+.btns:hover, .operator:hover, .equal:hover, .clear:hover, .delete:hover, .decimal:hover {
     background-color: grey;
 }
-.btns:active {
+.btns:active, .operator:active, .equal:active, .clear:hover, .delete:hover, .decimal:active {
     scale: 1.1;
 }
 
