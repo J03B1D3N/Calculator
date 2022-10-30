@@ -2,6 +2,7 @@ let currentNumber = "";
 let previousNumber = "";
 let operator = "";
 
+window.addEventListener('keydown', (handleKeyPress))
 const currentDisplay = document.querySelector('.current_number');
 const previousDisplay = document.querySelector('.last_number')
 
@@ -108,3 +109,44 @@ function addDecimal() {
         currentDisplay.textContent = currentNumber;
     }
 }
+
+function handleNumber(number) {
+    if (previousNumber !== "" && currentNumber !== "" && operator === "") {
+      previousNumber = "";
+      currentDisplay.textContent = currentNumber;
+    }
+    if (currentNumber.length <= 11) {
+      currentNumber += number;
+      currentDisplay.textContent = currentNumber;
+    }
+  }
+
+  function handleKeyPress(e) {
+    e.preventDefault();
+    if (e.key >= 0 && e.key <= 9) {
+      handleNumber(e.key);
+    }
+    if (
+      e.key === "Enter" ||
+      (e.key === "=" && currentNum != "" && previousNum != "")
+    ) {
+      calculate();
+    }
+    if (e.key === "+" || e.key === "-") {
+      handleOperator(e.key);
+    }
+    if(e.key === "/") {
+        handleOperator('÷')
+    }
+    if (e.key === "*") {
+      handleOperator("×");
+    }
+    if (e.key === ".") {
+      addDecimal();
+    }
+    if (e.key === "Backspace") {
+      deleteLastCharacter();
+    }
+  }
+
+    
